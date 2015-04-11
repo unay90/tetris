@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/tetrisfondo"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    android:weightSum="1">
 
     <TextView
         android:id="@+id/textView1"
@@ -17,37 +18,74 @@
         android:textColor="#ffffff"
         android:textSize="60sp" />
 
-    <Button
-        android:id="@+id/btnJugar"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="72dp"
         android:layout_marginTop="30dp"
-        android:background="#ffffff"
-        android:onClick="jugar"
-        android:text="Jugar"
-        android:textSize="25sp" />
+        android:layout_weight="0.08">
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="#ffffff"
-        android:onClick="mostrarPuntuacion"
-        android:text="Puntuacion Max."
-        android:textSize="25sp" />
+        <Button
+            android:id="@+id/btnJugar"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_gravity="left"
+            android:onClick="jugar"
+            android:text="Jugar"
+            android:textSize="20sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:background="#616161"
+            android:textColor="#ffffff" />
 
-    <Button
-        android:id="@+id/btnSalir"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="#ffffff"
-        android:onClick="salir"
-        android:text="Salir"
-        android:textSize="25sp" />
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:text="Velocidad"
+            android:id="@+id/btnVelocidad"
+            android:layout_gravity="right"
+            android:textSize="20sp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:background="#616161"
+            android:textColor="#ffffff"
+            android:onClick="velocidad" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_weight="0.12"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/btnPunMax"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:onClick="mostrarPuntuacion"
+            android:text="Puntuacion Max."
+            android:textSize="20sp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.23"
+            android:background="#616161"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/btnSalir"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:onClick="salir"
+            android:text="Salir"
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:background="#616161"
+            android:textColor="#ffffff" />
+    </LinearLayout>
 
 </LinearLayout><!-- From: file:/C:/Users/Unai/AndroidstudioProjects/app/src/main/res/layout/activity_main.xml -->

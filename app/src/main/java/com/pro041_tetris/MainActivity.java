@@ -1,5 +1,7 @@
 package com.pro041_tetris;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
-	public static int puntuacion;
+	public static int puntuacion, fps=20;
 	private static SharedPreferences preferencias;
 
 	@Override
@@ -42,10 +44,33 @@ public class MainActivity extends Activity {
 		puntuacion=preferencias.getInt("puntuacion", 0);
 		Toast.makeText(getApplicationContext(), puntuacion+"", Toast.LENGTH_SHORT).show();
 	}
+
+    public void velocidad(View v){
+        final CharSequence[] items = {"Lento", "Rapido"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Velocidad");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                switch (item){
+                    case 0:
+                        fps=20;
+                        break;
+                    case 1:
+                        fps=30;
+                        break;
+                }
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 	
 	public static void guardarPuntuacion(int p){
 		Editor editor=preferencias.edit();
 		editor.putInt("puntuacion", p);
 		editor.commit();
 	}
+
+
 }

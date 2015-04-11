@@ -10,7 +10,7 @@ public class HiloPantalla extends Thread {
 
 	private GameView view;
 	private boolean running=false;
-	private int FPS=20;
+	private int FPS=MainActivity.fps;
 	private boolean finJuego;
 	private int nFPS;
 	
@@ -18,18 +18,6 @@ public class HiloPantalla extends Thread {
 		this.view=view;
 		finJuego=true;
 		nFPS=0;
-	}
-	
-	public int getnFPS() {
-		return nFPS;
-	}
-
-	public void setRunning(boolean run){
-		running=run;
-	}
-	
-	public boolean isRunning(){
-		return running;
 	}
 	
 	public void run(){
@@ -78,15 +66,19 @@ public class HiloPantalla extends Thread {
 		}
 	}
 
-	public int getFPS() {
-		return FPS;
-	}
-
-	public void setFPS(int fPS) {
-		FPS = fPS;
-	}
-
 	public void setFinJuego(boolean finJuego) {
 		this.finJuego = finJuego;
 	}
+
+    public int getnFPS() {
+        return nFPS;
+    }
+
+    public void setRunning(boolean run){
+        running=run;
+    }
+
+    public boolean isRunning(){
+        return running;
+    }
 }

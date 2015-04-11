@@ -79,10 +79,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 		hiloPantalla.start();
 	}
 
-	public void setHiloPantallaFPS(int f) {
-		hiloPantalla.setFPS(f);
-	}
-
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		boolean retry=true;
