@@ -53,16 +53,16 @@
       <file leaf-file-name="GameView.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pro041/pintado/GameView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73310024" vertical-offset="3145" max-vertical-offset="5695">
-              <caret line="222" column="21" selection-start-line="222" selection-start-column="21" selection-end-line="222" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.34615386" vertical-offset="5007" max-vertical-offset="5950">
+              <caret line="312" column="31" selection-start-line="312" selection-start-column="31" selection-end-line="312" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#10316#10317#0" expanded="true" />
-                <element signature="e#10342#10343#0" expanded="true" />
-                <element signature="e#10949#10950#0" expanded="true" />
-                <element signature="e#10976#10977#0" expanded="true" />
-                <element signature="e#11003#11004#0" expanded="true" />
-                <element signature="e#11023#11024#0" expanded="true" />
+                <element signature="e#10676#10677#0" expanded="true" />
+                <element signature="e#10702#10703#0" expanded="true" />
+                <element signature="e#11309#11310#0" expanded="true" />
+                <element signature="e#11336#11337#0" expanded="true" />
+                <element signature="e#11363#11364#0" expanded="true" />
+                <element signature="e#11383#11384#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,7 +71,7 @@
       <file leaf-file-name="HiloPantalla.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pro041/pintado/HiloPantalla.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="233" max-vertical-offset="1343">
+            <state vertical-scroll-proportion="0.0" vertical-offset="268" max-vertical-offset="1343">
               <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
               <folding />
             </state>
@@ -1302,12 +1302,12 @@
           <caret line="160" column="37" selection-start-line="160" selection-start-column="37" selection-end-line="160" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10316#10317#0" expanded="true" />
-            <element signature="e#10342#10343#0" expanded="true" />
-            <element signature="e#10949#10950#0" expanded="true" />
-            <element signature="e#10976#10977#0" expanded="true" />
-            <element signature="e#11003#11004#0" expanded="true" />
-            <element signature="e#11023#11024#0" expanded="true" />
+            <element signature="e#10676#10677#0" expanded="true" />
+            <element signature="e#10702#10703#0" expanded="true" />
+            <element signature="e#11309#11310#0" expanded="true" />
+            <element signature="e#11336#11337#0" expanded="true" />
+            <element signature="e#11363#11364#0" expanded="true" />
+            <element signature="e#11383#11384#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1329,12 +1329,12 @@
           <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10316#10317#0" expanded="true" />
-            <element signature="e#10342#10343#0" expanded="true" />
-            <element signature="e#10949#10950#0" expanded="true" />
-            <element signature="e#10976#10977#0" expanded="true" />
-            <element signature="e#11003#11004#0" expanded="true" />
-            <element signature="e#11023#11024#0" expanded="true" />
+            <element signature="e#10676#10677#0" expanded="true" />
+            <element signature="e#10702#10703#0" expanded="true" />
+            <element signature="e#11309#11310#0" expanded="true" />
+            <element signature="e#11336#11337#0" expanded="true" />
+            <element signature="e#11363#11364#0" expanded="true" />
+            <element signature="e#11383#11384#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1522,16 +1522,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pro041/pintado/GameView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73310024" vertical-offset="3145" max-vertical-offset="5695">
-          <caret line="222" column="21" selection-start-line="222" selection-start-column="21" selection-end-line="222" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.34615386" vertical-offset="5007" max-vertical-offset="5950">
+          <caret line="312" column="31" selection-start-line="312" selection-start-column="31" selection-end-line="312" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10316#10317#0" expanded="true" />
-            <element signature="e#10342#10343#0" expanded="true" />
-            <element signature="e#10949#10950#0" expanded="true" />
-            <element signature="e#10976#10977#0" expanded="true" />
-            <element signature="e#11003#11004#0" expanded="true" />
-            <element signature="e#11023#11024#0" expanded="true" />
+            <element signature="e#10676#10677#0" expanded="true" />
+            <element signature="e#10702#10703#0" expanded="true" />
+            <element signature="e#11309#11310#0" expanded="true" />
+            <element signature="e#11336#11337#0" expanded="true" />
+            <element signature="e#11363#11364#0" expanded="true" />
+            <element signature="e#11383#11384#0" expanded="true" />
           </folding>
         </state>
       </provider>

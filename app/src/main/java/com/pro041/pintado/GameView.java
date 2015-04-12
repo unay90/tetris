@@ -286,6 +286,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 	}
 
 	private void limpiarLineas() {
+        int nLineas=0;
 		for(int f=1; f<15; f++){//no hago la ultima para ke no de error al igualarlo con una fila superior
 			if(arrayPiezas[f][0]!=null && arrayPiezas[f][1]!=null && arrayPiezas[f][2]!=null && arrayPiezas[f][3]!=null && arrayPiezas[f][4]!=null && arrayPiezas[f][5]!=null &&
 					arrayPiezas[f][6]!=null && arrayPiezas[f][7]!=null && arrayPiezas[f][8]!=null && arrayPiezas[f][9]!=null){
@@ -294,10 +295,24 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 						arrayPiezas[fila][c]=arrayPiezas[fila+1][c];
 					}
 				}
-				puntos=puntos+10;
+				nLineas++;
 				f--;
 			}
 		}
+        switch (nLineas){
+            case 1:
+                puntos=puntos+10;
+                break;
+            case 2:
+                puntos=puntos+25;
+                break;
+            case 3:
+                puntos=puntos+40;
+                break;
+            case 4:
+                puntos=puntos+60;
+                break;
+        }
 	}
 	
 	private void siguientePieza(){
