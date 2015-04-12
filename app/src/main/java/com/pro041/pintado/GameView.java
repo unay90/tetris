@@ -20,7 +20,6 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -71,7 +70,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 		bmpJota=redimensionarImagen(bmpJota, ladoBloque*3, ladoBloque*2);
 		puntos=0;
 		p=new Paint();
-		p.setTextSize(getHeight()/13);
+		p.setTextSize(getHeight()*5/100);
 		r=new Random();
 		arrayPiezas=new Bitmap[16][10];//16 filas 10 columnas
 		siguientePieza();
@@ -127,29 +126,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 			}
             if (auto){
                 if (hiloPantalla.getnFPS()%5 == 0){
-                    if (pieza.puedoMoverAbajo(arrayPiezas)) {
-                        pieza.moverPiezaAbajo(arrayPiezas);
-                    } else if (puedoSacarPieza()) {
-                        sacarPieza();
-                        siguientePieza();
-                    } else {
-                        finJuego();
-                    }
+                    flujo();
                 }
             }else {
                 if (hiloPantalla.getnFPS() == 0 || hiloPantalla.getnFPS() == 10 || hiloPantalla.getnFPS() == 20 || hiloPantalla.getnFPS() == 30) {
-                    if (pieza.puedoMoverAbajo(arrayPiezas)) {
-                        pieza.moverPiezaAbajo(arrayPiezas);
-                    } else if (puedoSacarPieza()) {
-                        sacarPieza();
-                        siguientePieza();
-                    } else {
-                        finJuego();
-                    }
+                    flujo();
                 }
             }
 
-			canvas.drawText(puntos+"", 5, getHeight()/15, p);
+			canvas.drawText(Integer.toString(puntos), 5, getHeight()*6/100, p);
 			synchronized (arrayPiezas) {
 				for(int f=0; f<16; f++){
 					for(int c=0; c<10; c++){
@@ -161,6 +146,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 			}
 		}
 	}
+
+    private void flujo(){
+        if (pieza.puedoMoverAbajo(arrayPiezas)) {
+            pieza.moverPiezaAbajo(arrayPiezas);
+        } else if (puedoSacarPieza()) {
+            sacarPieza();
+            siguientePieza();
+        } else {
+            finJuego();
+        }
+    }
 	
 	private void finJuego() {
 		for(int f=0; f<16; f++){
