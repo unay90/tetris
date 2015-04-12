@@ -53,8 +53,8 @@
       <file leaf-file-name="GameView.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pro041/pintado/GameView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32798573" vertical-offset="2128" max-vertical-offset="5882">
-              <caret line="136" column="70" selection-start-line="136" selection-start-column="70" selection-end-line="136" selection-end-column="70" />
+            <state vertical-scroll-proportion="0.41889483" vertical-offset="1924" max-vertical-offset="5882">
+              <caret line="127" column="44" selection-start-line="127" selection-start-column="44" selection-end-line="127" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#10326#10327#0" expanded="true" />
@@ -1522,8 +1522,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pro041/pintado/GameView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32798573" vertical-offset="2128" max-vertical-offset="5882">
-          <caret line="136" column="70" selection-start-line="136" selection-start-column="70" selection-end-line="136" selection-end-column="70" />
+        <state vertical-scroll-proportion="0.41889483" vertical-offset="1924" max-vertical-offset="5882">
+          <caret line="127" column="44" selection-start-line="127" selection-start-column="44" selection-end-line="127" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#10326#10327#0" expanded="true" />

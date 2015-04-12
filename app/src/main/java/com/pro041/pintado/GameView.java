@@ -125,7 +125,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 				break;
 			}
             if (auto){
-                if (hiloPantalla.getnFPS()%5 == 0){
+                if (hiloPantalla.getnFPS()%2 == 0){
                     flujo();
                 }
             }else {
