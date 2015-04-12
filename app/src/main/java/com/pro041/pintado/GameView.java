@@ -1,5 +1,6 @@
 package com.pro041.pintado;
 
+import java.util.Calendar;
 import java.util.Random;
 
 import com.pro041.models.Barra;
@@ -19,6 +20,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -33,9 +35,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 	private int nPieza;
 	private Random r;
 	private int[] posBloque1, posBloque2, posBloque3, posBloque4;
-	private int puntos;
+	private int puntos, y, x, alto;
 	private Paint p;
 	private Bitmap bmpCuadrado, bmpBarra, bmpTriangulo, bmpEse, bmpZeta, bmpJota, bmpEle;
+    private static final int MAX_CLICK_DURATION = 125;
+    private long startClickTime;
+    private boolean auto=false;
 
 	public GameView(Context context) {
 		super(context);
@@ -94,7 +99,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 	
 	public void onDraw(Canvas canvas){
 		if(hiloPantalla.isRunning()){
-			int alto=canvas.getHeight();
+			alto=canvas.getHeight();
 			int ancho=canvas.getWidth();
 			canvas.drawRGB(255, 255, 255);
 			switch (nPieza) {
@@ -120,16 +125,30 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 				canvas.drawBitmap(bmpJota, ancho-bmpJota.getWidth(), 0, null);
 				break;
 			}
-			if(hiloPantalla.getnFPS()==1 || hiloPantalla.getnFPS()==10 || hiloPantalla.getnFPS()==20 || hiloPantalla.getnFPS()==30){
-				if(pieza.puedoMoverAbajo(arrayPiezas)){
-					pieza.moverPiezaAbajo(arrayPiezas);
-				}else if(puedoSacarPieza()){
-					sacarPieza();
-					siguientePieza();
-				}else{
-					finJuego();
-				}
-			}
+            if (auto){
+                if (hiloPantalla.getnFPS()%5 == 0){
+                    if (pieza.puedoMoverAbajo(arrayPiezas)) {
+                        pieza.moverPiezaAbajo(arrayPiezas);
+                    } else if (puedoSacarPieza()) {
+                        sacarPieza();
+                        siguientePieza();
+                    } else {
+                        finJuego();
+                    }
+                }
+            }else {
+                if (hiloPantalla.getnFPS() == 0 || hiloPantalla.getnFPS() == 10 || hiloPantalla.getnFPS() == 20 || hiloPantalla.getnFPS() == 30) {
+                    if (pieza.puedoMoverAbajo(arrayPiezas)) {
+                        pieza.moverPiezaAbajo(arrayPiezas);
+                    } else if (puedoSacarPieza()) {
+                        sacarPieza();
+                        siguientePieza();
+                    } else {
+                        finJuego();
+                    }
+                }
+            }
+
 			canvas.drawText(puntos+"", 5, getHeight()/15, p);
 			synchronized (arrayPiezas) {
 				for(int f=0; f<16; f++){
@@ -157,41 +176,57 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 	}
 
 	public boolean onTouchEvent(MotionEvent event){
-		if(event.getAction()==MotionEvent.ACTION_DOWN){
-			int x=(int) event.getX();
-			int y=(int) event.getY();
-			posBloque1=pieza.getPosBloque1();
-			posBloque2=pieza.getPosBloque2();
-			posBloque3=pieza.getPosBloque3();
-			posBloque4=pieza.getPosBloque4();
-			//cojo la posicion en la que deberia estar cada bloque en la pantalla
-			Rect bloque1=new Rect(posBloque1[1]*ladoBloque, getHeight()-(posBloque1[0]*ladoBloque), (posBloque1[1]*ladoBloque)+ladoBloque, (getHeight()-(posBloque1[0]*ladoBloque)+ladoBloque));
-			Rect bloque2=new Rect(posBloque2[1]*ladoBloque, getHeight()-(posBloque2[0]*ladoBloque), (posBloque2[1]*ladoBloque)+ladoBloque, (getHeight()-(posBloque2[0]*ladoBloque)+ladoBloque));
-			Rect bloque3=new Rect(posBloque3[1]*ladoBloque, getHeight()-(posBloque3[0]*ladoBloque), (posBloque3[1]*ladoBloque)+ladoBloque, (getHeight()-(posBloque3[0]*ladoBloque)+ladoBloque));
-			Rect bloque4=new Rect(posBloque4[1]*ladoBloque, getHeight()-(posBloque4[0]*ladoBloque), (posBloque4[1]*ladoBloque)+ladoBloque, (getHeight()-(posBloque4[0]*ladoBloque)+ladoBloque));
-			if(bloque1.contains(x, y) || bloque2.contains(x, y) || bloque3.contains(x, y) || bloque4.contains(x, y)){
-				synchronized (arrayPiezas) {
-					if(pieza.puedoGirarPieza(arrayPiezas)){
-						pieza.girarPieza(arrayPiezas);
-					}
-				}
-			}else if(x>=getWidth()*50/100){
-				synchronized (arrayPiezas) {
-					if(pieza.puedoMoverDer(arrayPiezas)){
-						pieza.moverPiezaDer(arrayPiezas);
-					}
-				}
-			}else if(x<getWidth()*50/100){
-				synchronized (arrayPiezas) {
-					if(pieza.puedoMoverIzq(arrayPiezas)){
-						pieza.moverPiezaIzq(arrayPiezas);
-					}
-				}
-			}
-		}
+        int action=event.getActionMasked();
+        switch (action){
+            case MotionEvent.ACTION_DOWN:
+                startClickTime = Calendar.getInstance().getTimeInMillis();
+                y = (int) event.getY();
+                x = (int) event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+                if (!auto) {
+                    long clickDuration = Calendar.getInstance().getTimeInMillis() - startClickTime;
+                    if (clickDuration < MAX_CLICK_DURATION) {
+                        posBloque1 = pieza.getPosBloque1();
+                        posBloque2 = pieza.getPosBloque2();
+                        posBloque3 = pieza.getPosBloque3();
+                        posBloque4 = pieza.getPosBloque4();
+                        //cojo la posicion en la que deberia estar cada bloque en la pantalla
+                        Rect bloque1 = new Rect(posBloque1[1] * ladoBloque, getHeight() - (posBloque1[0] * ladoBloque), (posBloque1[1] * ladoBloque) + ladoBloque, (getHeight() - (posBloque1[0] * ladoBloque) + ladoBloque));
+                        Rect bloque2 = new Rect(posBloque2[1] * ladoBloque, getHeight() - (posBloque2[0] * ladoBloque), (posBloque2[1] * ladoBloque) + ladoBloque, (getHeight() - (posBloque2[0] * ladoBloque) + ladoBloque));
+                        Rect bloque3 = new Rect(posBloque3[1] * ladoBloque, getHeight() - (posBloque3[0] * ladoBloque), (posBloque3[1] * ladoBloque) + ladoBloque, (getHeight() - (posBloque3[0] * ladoBloque) + ladoBloque));
+                        Rect bloque4 = new Rect(posBloque4[1] * ladoBloque, getHeight() - (posBloque4[0] * ladoBloque), (posBloque4[1] * ladoBloque) + ladoBloque, (getHeight() - (posBloque4[0] * ladoBloque) + ladoBloque));
+                        if (bloque1.contains(x, y) || bloque2.contains(x, y) || bloque3.contains(x, y) || bloque4.contains(x, y)) {
+                            synchronized (arrayPiezas) {
+                                if (pieza.puedoGirarPieza(arrayPiezas)) {
+                                    pieza.girarPieza(arrayPiezas);
+                                }
+                            }
+                        } else if (x >= getWidth() * 50 / 100) {
+                            synchronized (arrayPiezas) {
+                                if (pieza.puedoMoverDer(arrayPiezas)) {
+                                    pieza.moverPiezaDer(arrayPiezas);
+                                }
+                            }
+                        } else if (x < getWidth() * 50 / 100) {
+                            synchronized (arrayPiezas) {
+                                if (pieza.puedoMoverIzq(arrayPiezas)) {
+                                    pieza.moverPiezaIzq(arrayPiezas);
+                                }
+                            }
+                        }
+                    } else {
+                        int espacio = alto / 100 * 5;
+                        if ((event.getY() - y) >= espacio) {
+                            auto=true;
+                        }
+                    }
+                }
+                break;
+        }
 		return true;
 	}
-	
+
 	private void sacarPieza(){
 		switch (nPieza) {
 		case 0:
@@ -219,6 +254,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 	}
 	
 	public boolean puedoSacarPieza(){
+        auto=false;
 		limpiarLineas();
 		switch (nPieza) {
 		case 0:
