@@ -17,7 +17,7 @@ public class HiloPantalla extends Thread {
 	public HiloPantalla(GameView view){
 		this.view=view;
 		finJuego=true;
-		nFPS=0;
+		nFPS=1;
 	}
 	
 	public void run(){

@@ -66,7 +66,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 		bmpJota=redimensionarImagen(bmpJota, ladoBloque*3, ladoBloque*2);
 		puntos=0;
 		p=new Paint();
-		p.setTextSize(30);
+		p.setTextSize(getHeight()/13);
 		r=new Random();
 		arrayPiezas=new Bitmap[16][10];//16 filas 10 columnas
 		siguientePieza();
@@ -130,7 +130,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 					finJuego();
 				}
 			}
-			canvas.drawText(puntos+"", 5, 35, p);
+			canvas.drawText(puntos+"", 5, getHeight()/15, p);
 			synchronized (arrayPiezas) {
 				for(int f=0; f<16; f++){
 					for(int c=0; c<10; c++){
